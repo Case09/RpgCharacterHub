@@ -18,6 +18,7 @@ module.exports = {
 				loader: "babel-loader",
 				exclude: /node_modules/
 			},
+			// Fonts
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
 				use: ["file-loader"]

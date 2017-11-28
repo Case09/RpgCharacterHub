@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import InviteContainer from "./containers/index.js";
 import store from "./store/store";
 import "./styles/main.scss";
-import 'typeface-roboto';
+import 'typeface-roboto'; // Material fonts
 
 class Main extends React.Component {
 	render() {

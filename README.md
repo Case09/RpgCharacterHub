@@ -3,6 +3,6 @@
 ### Tech stack:
 - ##### React
 - ##### Redux
-- ##### Bootstrap
+- ##### Material UI
 - ##### Sass
 - ##### Webpack
