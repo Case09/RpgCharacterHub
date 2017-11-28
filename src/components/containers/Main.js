@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from './Layout';
+import Dashboard from '../Dashboard';
 import Button from 'material-ui/Button';
 
 class Main extends React.Component {
@@ -10,7 +11,7 @@ class Main extends React.Component {
     render() {
         return (
             <Layout>
-                <Button>Test</Button>
+                <Dashboard />
             </Layout>
         )
     }

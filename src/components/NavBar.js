@@ -18,7 +18,7 @@ export default class NavBar extends React.Component {
 						<Typography type="title" color="inherit">
 							Rpg Character Hub
 						</Typography>
-                        <Button color="default">Sign In/Up</Button>
+                        <Button style={{position: "absolute", right: "10px"}} color="contrast">Sign In/Up</Button>
 					</Toolbar>
 				</AppBar>
 			</div>

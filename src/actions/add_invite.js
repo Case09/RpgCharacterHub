@@ -1,5 +1,5 @@
 import ActionTypes from '../constants/action_types';
-import database from './database';
+import database from '../config/database';
 
 export function addToInvite(name) {
     return dispatch => {
