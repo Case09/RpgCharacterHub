@@ -1,4 +1,3 @@
-import "./styles/main.scss";
 import 'typeface-roboto'; // Material fonts
 import React from "react";
 import ReactDOM from "react-dom";
