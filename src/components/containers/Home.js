@@ -1,7 +1,5 @@
 import React from 'react';
-import Layout from './Layout';
-import Dashboard from '../Dashboard';
-import Button from 'material-ui/Button';
+import NavBar from '../NavBar';
 
 class Main extends React.Component {
     constructor(props) {
@@ -10,9 +8,10 @@ class Main extends React.Component {
 
     render() {
         return (
-            <Layout>
-                <Dashboard />
-            </Layout>
+            <div>
+                <NavBar />
+                {this.props.children}
+            </div>
         )
     }
 }

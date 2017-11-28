@@ -4,6 +4,7 @@ import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import IconButton from "material-ui/IconButton";
+import { Link } from 'react-router-dom';
 
 export default class NavBar extends React.Component {
 	constructor(props) {
@@ -18,7 +19,9 @@ export default class NavBar extends React.Component {
 						<Typography type="title" color="inherit">
 							Rpg Character Hub
 						</Typography>
-                        <Button style={{position: "absolute", right: "10px"}} color="contrast">Sign In/Up</Button>
+                        <Button style={{position: "absolute", right: "10px"}} color="contrast">
+							<Link style={{textDecoration: "none", color: "inherit"}} to="/login">Sign In/Up</Link>
+						</Button>
 					</Toolbar>
 				</AppBar>
 			</div>

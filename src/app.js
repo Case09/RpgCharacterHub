@@ -4,48 +4,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store/store";
 import { database, firebaseAuth } from './config/database';
+import { PrivateRoute, PublicRoute } from './helpers/routes';
 
 import Home from "./components/containers/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
-
-function PrivateRoute({ component: Component, authed, ...rest }) {
-	return (
-		<Route
-			{...rest}
-			render={props =>
-				authed === true ? (
-					<Component {...props} />
-				) : (
-					<Redirect
-						to={{
-							pathname: "/login",
-							state: { from: props.location }
-						}}
-					/>
-				)
-			}
-		/>
-	);
-}
-
-function PublicRoute({ component: Component, authed, ...rest }) {
-	return (
-		<Route
-			{...rest}
-			render={props =>
-				authed === false ? (
-					<Component {...props} />
-				) : (
-					<Redirect to="/dashboard" />
-				)
-			}
-		/>
-	);
-}
 
 class Main extends React.Component {
 
