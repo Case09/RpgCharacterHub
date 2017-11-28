@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Home from './components/containers/Home';
+import Main from './components/containers/Main';
 
 export default function() {
     return (
         <div>
-            <Route path="/" component={Home} />
+            <Route path="/" component={Main} />
         </div>
     )
 }
