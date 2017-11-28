@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import InviteContainer from "./containers/index.js";
 import store from "./store/store";
 import "./styles/main.scss";
+import 'typeface-roboto';
 
 class Main extends React.Component {
 	render() {

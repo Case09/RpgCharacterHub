@@ -10,13 +10,17 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.scss$/,
+				test: /\.(scss|css)$/,
 				use: ["style-loader", "css-loader", "sass-loader"]
 			},
 			{
 				test: /\.js?$/,
 				loader: "babel-loader",
 				exclude: /node_modules/
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|otf)$/,
+				use: ["file-loader"]
 			}
 		]
 	},
@@ -24,7 +28,7 @@ module.exports = {
 		new CleanWebpackPlugin(["dist"]),
 		new HtmlWebpackPlugin({
 			title: "RPG Character Hub",
-			template: './src/index.html'
+			template: "./src/index.html"
 		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin()

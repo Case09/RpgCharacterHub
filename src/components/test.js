@@ -1,4 +1,5 @@
 import React from "react";
+import Button from 'material-ui/Button';
 
 export default class Test extends React.Component {
 	componentDidMount() {
@@ -11,6 +12,7 @@ export default class Test extends React.Component {
 			<div className="container">
 				<div className="well">
 					<h1>Meeting invite</h1>
+					<Button raised color="primary">Ze Button</Button>
 				</div>
 				<div className="bg-warning meeting-summary">
 					<div className="row">
