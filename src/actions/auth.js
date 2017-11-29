@@ -1,10 +1,26 @@
 import ActionTypes from '../constants/action_types';
-import database from '../config/database';
+import { database, firebaseAuth } from '../config/database';
 
-export function isAuthenticated() {
+export function checkAuth() {
     return dispatch => {
-        database.on('value', (snapshot) => {
-            dispatch(action_types.isAuthenticated)
+        firebaseAuth().onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(signedInAction())
+            } else {
+                dispatch(signedOutAction())
+            }
         })
+    }
+}
+
+function signedInAction() {
+    return {
+        type: ActionTypes.isSignedIn
+    }
+}
+
+function signedOutAction() {
+    return {
+        type: ActionTypes.isSignedOut
     }
 }

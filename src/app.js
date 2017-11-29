@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store/store";
 import { database, firebaseAuth } from "./config/database";
 import { PrivateRoute, PublicRoute } from "./helpers/routes";
+import { checkAuth } from './actions/auth';
 
 import Home from "./components/containers/Home";
 import Dashboard from "./components/Dashboard";
@@ -17,33 +18,15 @@ class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			authed: false,
-			loading: true
-		};
+			authed: false
+		}
 	}
 
 	componentDidMount() {
-		this.removeListener = firebaseAuth().onAuthStateChanged(user => {
-			if (user) {
-				this.setState({
-					authed: true,
-					loading: false
-				});
-			} else {
-				this.setState({
-					authed: false,
-					loading: false
-				});
-			}
-		});
-	}
-
-	componentWillUnmount() {
-		this.removeListener();
+		store.dispatch(checkAuth());
 	}
 
 	render() {
-		const { store } = this.props;
 		return (
 			<Provider store={store}>
 				<Router>
@@ -52,12 +35,12 @@ class Main extends React.Component {
 						<Route exact component={Home} />
 						<Switch>
 							<PublicRoute
-								authed={this.state.authed}
+								authed={() => store.getState().auth.isAuthenticated}
 								path="/login"
 								component={Login}
 							/>
 							<PrivateRoute
-								authed={this.state.authed}
+								authed={() => store.getState().auth.isAuthenticated}
 								path="/dashboard"
 								component={Dashboard}
 							/>
@@ -69,8 +52,4 @@ class Main extends React.Component {
 	}
 }
 
-Main.propTypes = {
-	store: PropTypes.object.isRequired
-};
-
-ReactDOM.render(<Main store={store} />, document.getElementById("root"));
+ReactDOM.render(<Main/>, document.getElementById("root"));

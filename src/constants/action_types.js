@@ -1,5 +1,6 @@
 const actionTypes = {
-	isAuthenticated: "IS_AUTHENTICATED"
+	isSignedIn: "IS_SIGNED_IN",
+	isSignedOut: "IS_SIGNED_OUT"
 };
 
 export default actionTypes;

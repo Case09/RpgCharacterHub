@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Redirect, Route } from 'react-router-dom'
 
 export function PrivateRoute({ component: Component, authed, ...rest }) {
+	const isAuthenticated = authed();
 	return (
 		<Route
 			{...rest}
 			render={props =>
-				authed === true ? (
+				isAuthenticated === true ? (
 					<Component {...props} />
 				) : (
 					<Redirect
@@ -22,11 +23,12 @@ export function PrivateRoute({ component: Component, authed, ...rest }) {
 }
 
 export function PublicRoute({ component: Component, authed, ...rest }) {
+	const isAuthenticated = authed();
 	return (
 		<Route
 			{...rest}
 			render={props =>
-				authed === false ? (
+				isAuthenticated === false ? (
 					<Component {...props} />
 				) : (
 					<Redirect to="/dashboard" />
