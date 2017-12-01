@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Button from "material-ui/Button";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
@@ -6,7 +6,7 @@ import Typography from "material-ui/Typography";
 import IconButton from "material-ui/IconButton";
 import { Link } from 'react-router-dom';
 
-export default class NavBar extends React.Component {
+export default class NavBar extends Component {
 	constructor(props) {
 		super(props);
 	}

@@ -1,6 +1,6 @@
 import "./main.scss";
 import "typeface-roboto"; // Material fonts
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -14,7 +14,8 @@ import Home from "./components/containers/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 
-class Main extends React.Component {
+class Main extends Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -31,7 +32,7 @@ class Main extends React.Component {
 			<Provider store={store}>
 				<Router>
 					<div>
-						{ /* Not setting path makes this render for every /** path, makes nested routing basically */ }
+						{ /* Not setting path makes this render for every /** path which makes nested routing basically, as Home is container */ }
 						<Route exact component={Home} />
 						<Switch>
 							<PublicRoute
