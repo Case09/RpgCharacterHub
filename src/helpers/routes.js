@@ -31,7 +31,7 @@ export function PublicRoute({ component: Component, authed, ...rest }) {
 				isAuthenticated === false ? (
 					<Component {...props} />
 				) : (
-					<Redirect to="/dashboard" />
+					<Redirect to="/" />
 				)
 			}
 		/>
