@@ -19,9 +19,9 @@ export default class NavBar extends Component {
 						<Typography type="title" color="inherit">
 							Rpg Character Hub
 						</Typography>
-                        <Button style={{position: "absolute", right: "10px"}} color="contrast">
-							<Link style={{textDecoration: "none", color: "inherit"}} to="/login">Sign In/Up</Link>
-						</Button>
+							<Link style={{position: "absolute", right: "10px", textDecoration: "none", color: "inherit"}} to="/login">
+								<Button color="contrast">Sign In/Up</Button>
+							</Link>
 					</Toolbar>
 				</AppBar>
 			</div>

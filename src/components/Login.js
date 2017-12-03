@@ -7,6 +7,8 @@ import Dialog, {
 	DialogContentText,
 	DialogTitle,
   } from 'material-ui/Dialog';
+import TextField from 'material-ui/TextField';  
+import './styles.scss';
 
 function setErrorMsg(error) {
 	return {
@@ -22,20 +24,21 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="loginModal">
 				<Dialog open={true}>
 					<DialogTitle>Sign In</DialogTitle>
 					<DialogContent>
-						<DialogContentText>
-						Test
-						</DialogContentText>
+						<TextField label="Username" style={{width: 200}} /><br />
+						<TextField label="Password" style={{width: 200}} />
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleRequestClose} color="primary">
-						Test
+						Login
 						</Button>
-						<Button onClick={this.handleRequestClose} color="primary" autoFocus>
-						Test
+					</DialogActions>
+					<DialogActions>
+						<Button onClick={this.handleRequestClose} color="primary">
+						Not signed in? Register!
 						</Button>
 					</DialogActions>
 				</Dialog>
