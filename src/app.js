@@ -19,9 +19,6 @@ class Main extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			authed: false
-		}
 	}
 
 	componentDidMount() {
@@ -33,9 +30,8 @@ class Main extends Component {
 			<Provider store={store}>
 				<Router>
 					<div>
-						{ /* Not setting path makes this render for every /** path which makes nested routing basically, as Home is container */ }
-						<Route exact component={Home} />
 						<Switch>
+							<Route exact path="/" component={Home} />
 							<PublicRoute
 								authed={() => store.getState().auth.isAuthenticated}
 								path="/login"

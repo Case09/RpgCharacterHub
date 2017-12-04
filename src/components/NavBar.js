@@ -20,7 +20,7 @@ export default class NavBar extends Component {
 							Rpg Character Hub
 						</Typography>
 							<Link style={{position: "absolute", right: "10px", textDecoration: "none", color: "inherit"}} to="/login">
-								<Button color="contrast">Sign In/Up</Button>
+								<Button color="contrast">Sign In</Button>
 							</Link>
 					</Toolbar>
 				</AppBar>

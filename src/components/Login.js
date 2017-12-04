@@ -13,8 +13,11 @@ import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 
 const style = {
-	fullWidth: {
-		width: '30%'
+	paperWidthSm: {
+		width: '350px'
+	},
+	root: {
+		textAlign: 'center'
 	}
 }
 
@@ -28,11 +31,11 @@ class Login extends Component {
 		const { classes } = this.props;
 		return (
 			<div>
-				<Dialog open={true} className={classes.paper}>
+				<Dialog open={true} classes={{paperWidthSm: classes.paperWidthSm}}>
 					<DialogTitle>Sign In</DialogTitle>
-					<DialogContent>
-						<TextField label="Username" style={{width: 200}} /><br />
-						<TextField type="password" label="Password" style={{width: 200}} />
+					<DialogContent classes={{root: classes.root}}>
+						<TextField label="Username" style={{width: "100%"}} /><br />
+						<TextField type="password" label="Password" style={{width: "100%"}} />
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleRequestClose} color="primary">
@@ -53,7 +56,6 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-	children: PropTypes.node,
 	classes: PropTypes.object.isRequired
 }
 

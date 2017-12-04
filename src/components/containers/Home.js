@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from '../NavBar';
+import { connect } from 'react-redux';
 
 class Main extends Component {
     constructor(props) {
@@ -16,4 +17,10 @@ class Main extends Component {
     }
 }
 
-export default Main;
+function mapStateTopProps(state) {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateTopProps)(Main);
