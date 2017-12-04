@@ -17,10 +17,12 @@ class App extends Component {
 
 	render() {
 		const { auth, dispatch } = this.props;
-		return (
-			<div>
-				{/* Always render Home page with nav bar */}
-				<Route exact component={Home} />
+		// so checks against isAuthenticated can pass
+		if (auth.isAuthenticated !== undefined) {
+			return (
+				<div>
+					{/* Always render Home page with nav bar */}
+					<Route exact component={Home} />
 					<PublicRoute
 						authed={() => auth.isAuthenticated}
 						path="/login"
@@ -36,8 +38,11 @@ class App extends Component {
 						path="/dashboard"
 						component={Dashboard}
 					/>
-			</div>
-		);
+				</div>
+			);
+		} else {
+			return <div></div>
+		}
 	}
 }
 
