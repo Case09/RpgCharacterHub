@@ -1,58 +1,51 @@
-import "./main.scss";
-import "typeface-roboto"; // Material fonts
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import store from "./store/store";
-import { database, firebaseAuth } from "./config/database";
 import { PrivateRoute, PublicRoute } from "./helpers/routes";
 import { checkAuth } from './actions/auth';
+import { Route, Switch } from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import Home from "./components/containers/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-class Main extends Component {
+// All routes are located here, also app is connected to redux store here
 
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {
-		store.dispatch(checkAuth());
-	}
+class App extends Component {
 
 	render() {
+		const { auth, dispatch } = this.props;
 		return (
-			<Provider store={store}>
-				<Router>
-					<div>
-						<Switch>
-							<Route exact path="/" component={Home} />
-							<PublicRoute
-								authed={() => store.getState().auth.isAuthenticated}
-								path="/login"
-								component={Login}
-							/>
-							<PublicRoute
-								authed={() => store.getState().auth.isAuthenticated}
-								path="/register"
-								component={Register}
-							/>
-							<PrivateRoute
-								authed={() => store.getState().auth.isAuthenticated}
-								path="/dashboard"
-								component={Dashboard}
-							/>
-						</Switch>
-					</div>
-				</Router>
-			</Provider>
+			<div>
+				{/* Always render Home page with nav bar */}
+				<Route exact component={Home} />
+					<PublicRoute
+						authed={() => auth.isAuthenticated}
+						path="/login"
+						component={(props) => <Login auth={auth} dispatch={dispatch} {...props} />}
+					/>
+					<PublicRoute
+						authed={() => auth.isAuthenticated}
+						path="/register"
+						component={Register}
+					/>
+					<PrivateRoute
+						authed={() => auth.isAuthenticated}
+						path="/dashboard"
+						component={Dashboard}
+					/>
+			</div>
 		);
 	}
 }
 
-ReactDOM.render(<Main/>, document.getElementById("root"));
+function mapStateToProps(state) {
+	return {
+		auth: state.auth,
+		dispatch: state.dispatch
+	}
+}
+
+export default withRouter(connect(mapStateToProps)(App));

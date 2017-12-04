@@ -11,6 +11,7 @@ import Dialog, {
 import TextField from 'material-ui/TextField';  
 import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
+import { signIn } from '../actions/auth';
 
 const style = {
 	paperWidthSm: {
@@ -25,6 +26,31 @@ class Login extends Component {
 	
 	constructor(props) {
 		super(props);
+		this.state = {
+			username: "",
+			password: ""
+		}
+	}
+
+	inputChange(input, name) {
+		const value = input.value;
+		if (name === "username") {
+			return this.setState({
+				username: value
+			});
+		} else {
+			return this.setState({
+				password: value
+			});
+		}
+		return;
+	}
+
+	login() {
+		const { username, password } = this.state;
+		const { dispatch } = this.props;
+		dispatch(signIn(username, password));
+
 	}
 
 	render() {
@@ -34,18 +60,18 @@ class Login extends Component {
 				<Dialog open={true} classes={{paperWidthSm: classes.paperWidthSm}}>
 					<DialogTitle>Sign In</DialogTitle>
 					<DialogContent classes={{root: classes.root}}>
-						<TextField label="Username" style={{width: "100%"}} /><br />
-						<TextField type="password" label="Password" style={{width: "100%"}} />
+						<TextField onChange={(e) => this.inputChange(e.target, "username")} label="Username" style={{width: "100%"}} /><br />
+						<TextField onChange={(e) => this.inputChange(e.target, "password")} type="password" label="Password" style={{width: "100%"}} />
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={this.handleRequestClose} color="primary">
-						Login
+						<Button onClick={() => this.login()} color="primary">
+							Login
 						</Button>
 					</DialogActions>
 					<DialogActions>
 						<Link style={{textDecoration: "none", color: "inherit"}} to="/register">
 							<Button onClick={this.handleRequestClose} color="primary">
-							Not signed in? Register!
+								Not signed in? Register!
 							</Button>
 						</Link>
 					</DialogActions>
