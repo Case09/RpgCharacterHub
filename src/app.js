@@ -13,6 +13,7 @@ import { checkAuth } from './actions/auth';
 import Home from "./components/containers/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 class Main extends Component {
 
@@ -39,6 +40,11 @@ class Main extends Component {
 								authed={() => store.getState().auth.isAuthenticated}
 								path="/login"
 								component={Login}
+							/>
+							<PublicRoute
+								authed={() => store.getState().auth.isAuthenticated}
+								path="/register"
+								component={Register}
 							/>
 							<PrivateRoute
 								authed={() => store.getState().auth.isAuthenticated}

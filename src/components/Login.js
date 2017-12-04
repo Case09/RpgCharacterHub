@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { login, resetPassword } from "../helpers/auth";
 import Button from "material-ui/Button";
+import PropTypes from 'prop-types';
 import Dialog, {
 	DialogActions,
 	DialogContent,
@@ -8,28 +9,30 @@ import Dialog, {
 	DialogTitle,
   } from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';  
-import './styles.scss';
+import { Link } from 'react-router-dom';
+import { withStyles } from 'material-ui/styles';
 
-function setErrorMsg(error) {
-	return {
-		loginMessage: error
-	};
+const style = {
+	fullWidth: {
+		width: '30%'
+	}
 }
 
-export default class Login extends Component {
+class Login extends Component {
 	
 	constructor(props) {
 		super(props);
 	}
 
 	render() {
+		const { classes } = this.props;
 		return (
-			<div className="loginModal">
-				<Dialog open={true}>
+			<div>
+				<Dialog open={true} className={classes.paper}>
 					<DialogTitle>Sign In</DialogTitle>
 					<DialogContent>
 						<TextField label="Username" style={{width: 200}} /><br />
-						<TextField label="Password" style={{width: 200}} />
+						<TextField type="password" label="Password" style={{width: 200}} />
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleRequestClose} color="primary">
@@ -37,12 +40,21 @@ export default class Login extends Component {
 						</Button>
 					</DialogActions>
 					<DialogActions>
-						<Button onClick={this.handleRequestClose} color="primary">
-						Not signed in? Register!
-						</Button>
+						<Link style={{textDecoration: "none", color: "inherit"}} to="/register">
+							<Button onClick={this.handleRequestClose} color="primary">
+							Not signed in? Register!
+							</Button>
+						</Link>
 					</DialogActions>
 				</Dialog>
 			</div>
 		);
 	}
 }
+
+Login.propTypes = {
+	children: PropTypes.node,
+	classes: PropTypes.object.isRequired
+}
+
+export default withStyles(style)(Login)
