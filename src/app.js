@@ -21,17 +21,20 @@ class App extends Component {
 		if (auth.isAuthenticated !== undefined) {
 			return (
 				<div>
-					{/* Always render Home page with nav bar */}
+					{/* Always render Home page with nav bar 
+						- auth.isAuthenticated is used to render or redirect if false, depending on if it's private or public router
+						- routerProps are passed, alongside with custom props that is passed via mapStateToProps
+					*/}
 					<Route exact component={Home} />
 					<PublicRoute
 						authed={() => auth.isAuthenticated}
 						path="/login"
-						component={(props) => <Login auth={auth} dispatch={dispatch} {...props} />}
+						component={(routerProps) => <Login auth={auth} dispatch={dispatch} {...routerProps} />}
 					/>
 					<PublicRoute
 						authed={() => auth.isAuthenticated}
 						path="/register"
-						component={Register}
+						component={(routerProps) => <Register dispatch={dispatch} {...routerProps} />}
 					/>
 					<PrivateRoute
 						authed={() => auth.isAuthenticated}

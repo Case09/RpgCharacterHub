@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { login, resetPassword } from "../helpers/auth";
-import Button from "material-ui/Button";
+import { login } from "../helpers/auth";
 import PropTypes from 'prop-types';
+import Button from "material-ui/Button";
 import Dialog, {
 	DialogActions,
 	DialogContent,
@@ -9,9 +9,15 @@ import Dialog, {
 	DialogTitle,
   } from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';  
+import { FormHelperText } from 'material-ui/Form';
 import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import { signIn } from '../actions/auth';
+import { validateInputValue } from './helpers/auth_helper';
+
+/**
+ * Login form component
+ */
 
 const style = {
 	paperWidthSm: {
@@ -27,53 +33,57 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			username: "",
+			email: "",
 			password: "",
-			usernameError: false,
+			emailError: false,
 			passwordError: false
 		}
 	}
 
 	inputChange(input, name) {
 		const value = input.value;
-		if (name === "username") {
-			return (!value) ? this.setState({usernameError: true}) : this.setState({usernameError: false})
+		const validation = validateInputValue(value);
+		if (name === "email") {
 			return this.setState({
-				username: value
+				email: value,
+				emailError: (!validation.isValid) ? validation.text : ""
 			});
 		} else {
-			return (!value) ? this.setState({passwordError: true}) : this.setState({passwordError: false})
 			return this.setState({
-				password: value
+				password: value,
+				passwordError: (!validation.isValid) ? validation.text : ""
 			});
 		}
 		return;
 	}
 
 	login() {
-		const { username, password } = this.state;
+		const { email, password, emailError, passwordError } = this.state;
 		const { dispatch } = this.props;
-		dispatch(signIn(username, password));
+		if (emailError || passwordError || email === "" || password === "") return;
+		// Dispatching signIn action creator
+		dispatch(signIn(email, password));
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, auth } = this.props;
 		return (
 			<div>
 				<Dialog open={true} classes={{paperWidthSm: classes.paperWidthSm}}>
 					<DialogTitle>Sign In</DialogTitle>
 					<DialogContent classes={{root: classes.root}}>
 						<TextField 
-							error={this.state.usernameError}
-							label={"Username"} 
-							onChange={(e) => this.inputChange(e.target, "username")} 
+							error={!!this.state.emailError}
+							label={this.state.emailError || "Email"}
+							onChange={(e) => this.inputChange(e.target, "email")}
 							style={{width: "100%"}} /><br />
 						<TextField 
-							error={this.state.passwordError}
+							error={!!this.state.passwordError}
 							onChange={(e) => this.inputChange(e.target, "password")} 
 							type="password" 
-							label="Password" 
+							label={this.state.passwordError || "Password"} 
 							style={{width: "100%"}} />
+						{auth.user === null ? <FormHelperText error={true}>Email and password combination doesn't exist</FormHelperText> : undefined}
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={() => this.login()} color="primary">
@@ -82,7 +92,7 @@ class Login extends Component {
 					</DialogActions>
 					<DialogActions>
 						<Link style={{textDecoration: "none", color: "inherit"}} to="/register">
-							<Button onClick={this.handleRequestClose} color="primary">
+							<Button color="primary">
 								Not signed in? Register!
 							</Button>
 						</Link>
@@ -94,6 +104,8 @@ class Login extends Component {
 }
 
 Login.propTypes = {
+	auth: PropTypes.object.isRequired,
+	dispatch: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired
 }
 

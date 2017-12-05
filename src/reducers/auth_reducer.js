@@ -22,6 +22,17 @@ export function authReducer(state = {}, action) {
 				user: null
 			})
 		}
+		case ActionTypes.registerSuccess: {
+			return Object.assign({}, state, {
+				isAuthenticated: true,
+				user: action.user
+			})
+		}
+		case ActionTypes.registerFailed: {
+			return Object.assign({}, state, {
+				user: null
+			})
+		}
 		default:
 			return state;
 	}
