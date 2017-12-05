@@ -1,8 +1,9 @@
 # Rpg Character Hub
-##### App designed to RPG create character sheets mainly for Bethesda RPGs like the ones from The Elder Scrolls and Fallout series.
+#### App designed to create character sheets mainly for Bethesda Softworks RPGs like the ones from The Elder Scrolls and Fallout series.
 ### Tech stack:
 - ##### React
 - ##### Redux
-- ##### Material UI
-- ##### Sass
+- ##### React-router v4
+- ##### Material UI v1.0.0-beta.22
 - ##### Webpack
+- ##### Sass
