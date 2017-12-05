@@ -28,17 +28,21 @@ class Login extends Component {
 		super(props);
 		this.state = {
 			username: "",
-			password: ""
+			password: "",
+			usernameError: false,
+			passwordError: false
 		}
 	}
 
 	inputChange(input, name) {
 		const value = input.value;
 		if (name === "username") {
+			return (!value) ? this.setState({usernameError: true}) : this.setState({usernameError: false})
 			return this.setState({
 				username: value
 			});
 		} else {
+			return (!value) ? this.setState({passwordError: true}) : this.setState({passwordError: false})
 			return this.setState({
 				password: value
 			});
@@ -50,7 +54,6 @@ class Login extends Component {
 		const { username, password } = this.state;
 		const { dispatch } = this.props;
 		dispatch(signIn(username, password));
-
 	}
 
 	render() {
@@ -60,8 +63,17 @@ class Login extends Component {
 				<Dialog open={true} classes={{paperWidthSm: classes.paperWidthSm}}>
 					<DialogTitle>Sign In</DialogTitle>
 					<DialogContent classes={{root: classes.root}}>
-						<TextField onChange={(e) => this.inputChange(e.target, "username")} label="Username" style={{width: "100%"}} /><br />
-						<TextField onChange={(e) => this.inputChange(e.target, "password")} type="password" label="Password" style={{width: "100%"}} />
+						<TextField 
+							error={this.state.usernameError}
+							label={"Username"} 
+							onChange={(e) => this.inputChange(e.target, "username")} 
+							style={{width: "100%"}} /><br />
+						<TextField 
+							error={this.state.passwordError}
+							onChange={(e) => this.inputChange(e.target, "password")} 
+							type="password" 
+							label="Password" 
+							style={{width: "100%"}} />
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={() => this.login()} color="primary">
