@@ -7,9 +7,10 @@ class Main extends Component {
     }
 
     render() {
+        const { auth, dispatch } = this.props;
         return (
             <div>
-                <NavBar />
+                <NavBar auth={auth} dispatch={dispatch}/>
             </div>
         )
     }

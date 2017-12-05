@@ -13,7 +13,7 @@ import Register from "./components/Register";
 
 // All routes are located here, also app is connected to redux store here
 
-class App extends Component {
+class Routes extends Component {
 
 	render() {
 		const { auth, dispatch } = this.props;
@@ -25,7 +25,7 @@ class App extends Component {
 						- auth.isAuthenticated is used to render or redirect if false, depending on if it's private or public router
 						- routerProps are passed, alongside with custom props that is passed via mapStateToProps
 					*/}
-					<Route exact component={Home} />
+					<Route exact component={() => <Home auth={auth} dispatch={dispatch} />} />
 					<PublicRoute
 						authed={() => auth.isAuthenticated}
 						path="/login"
@@ -56,4 +56,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps)(Routes));

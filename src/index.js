@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store/store";
 import { checkAuth } from './actions/auth';
 
-import App from './app';
+import Routes from './Routes';
 
 class Main extends Component {
 
@@ -23,7 +23,7 @@ class Main extends Component {
 		return (
 			<Provider store={store}>
 				<Router>
-					<App />
+					<Routes />
 				</Router>
 			</Provider>
 		);
