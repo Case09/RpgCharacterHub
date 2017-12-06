@@ -19,7 +19,7 @@ export default class NavBar extends Component {
 				<AppBar style={{margin: 0}} position="static" color="primary">
 					<Toolbar>
 						<Typography type="title" color="inherit">
-							Rpg Character Hub
+							RPG-CHub
 						</Typography>
 							{
 								!auth.isAuthenticated ? 

@@ -10,7 +10,6 @@ import Dialog, {
 import TextField from 'material-ui/TextField';  
 import { FormHelperText } from 'material-ui/Form';
 import withStyles from 'material-ui/styles/withStyles';
-import { validateInputValue } from './helpers/auth_helper';
 import { indigo } from 'material-ui/colors';
 import { signUp } from '../actions/auth';
 

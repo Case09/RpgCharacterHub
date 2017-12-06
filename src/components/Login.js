@@ -13,20 +13,19 @@ import { FormHelperText } from 'material-ui/Form';
 import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import { signIn } from '../actions/auth';
-import { validateInputValue } from './helpers/auth_helper';
 
 /**
  * Login form component
  */
 
-const style = {
+const style = theme => ({
 	paperWidthSm: {
 		width: '350px'
 	},
 	root: {
 		textAlign: 'center'
 	}
-}
+});
 
 class Login extends Component {
 	
