@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from "material-ui/Button";
+import { Link } from 'react-router-dom';
 import Dialog, {
 	DialogActions,
 	DialogContent,
@@ -7,7 +8,7 @@ import Dialog, {
 	DialogTitle,
   } from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';  
-import { Link } from 'react-router-dom';
+import { FormHelperText } from 'material-ui/Form';
 import withStyles from 'material-ui/styles/withStyles';
 import { validateInputValue } from './helpers/auth_helper';
 import { indigo } from 'material-ui/colors';
@@ -32,24 +33,19 @@ class Register extends Component {
 		super(props);
 		this.state = {
 			email: "",
-			password: "",
-			emailError: false,
-			passwordError: false
+			password: ""
 		}
 	}
 	
 	inputChange(input, name) {
 		const value = input.value;
-		const validation = validateInputValue(value);
 		if (name === "email") {
 			return this.setState({
-				email: value,
-				emailError: (!validation.isValid) ? validation.text : ""
+				email: value
 			});
 		} else {
 			return this.setState({
-				password: value,
-				passwordError: (!validation.isValid) ? validation.text : ""
+				password: value
 			});
 		}
 		return;
@@ -57,29 +53,28 @@ class Register extends Component {
 
 	signUp() {
 		const { dispatch } = this.props;
-		const { email, password, emailError, passwordError } = this.state;
-		if (emailError || passwordError || email === "" || password === "") return;
+		const { email, password } = this.state;
+		if (email === "" || password === "") return;
 		dispatch(signUp(email, password));
 	}
 
     render() {
-		const { classes } = this.props;
+		const { classes, auth } = this.props;
         return (
             <div>
                 <Dialog open={true} classes={{paperWidthSm: classes.paperWidthSm}}>
 					<DialogTitle>Sign Up</DialogTitle>
 					<DialogContent classes={{root: classes.root}}>
 						<TextField 
-							error={!!this.state.emailError}
-							label={this.state.emailError || "Email"}
+							label="Email"
 							onChange={(e) => this.inputChange(e.target, "email")}
 							style={{width: "100%"}} /><br />
 						<TextField 
-							error={!!this.state.passwordError}
 							onChange={(e) => this.inputChange(e.target, "password")} 
 							type="password" 
-							label={this.state.passwordError || "Password"} 
+							label="Password"
 							style={{width: "100%"}} />
+                        {!!auth.errorMessage ? <FormHelperText error={true}>{auth.errorMessage}</FormHelperText> : undefined}
 					</DialogContent>
 					<DialogActions>
 						<Link style={{textDecoration: "none"}} to="/login">

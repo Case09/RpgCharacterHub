@@ -1,11 +1,7 @@
 import { database, firebaseAuth } from "../config/database";
 
 export function createUser(email, pw) {
-	return firebaseAuth()
-		.createUserWithEmailAndPassword(email, pw)
-		.catch(error => {
-			console.log(error)
-		});
+	return firebaseAuth().createUserWithEmailAndPassword(email, pw);
 }
 
 export function logout() {

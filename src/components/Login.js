@@ -34,33 +34,28 @@ class Login extends Component {
 		super(props);
 		this.state = {
 			email: "",
-			password: "",
-			emailError: false,
-			passwordError: false
+			password: ""
 		}
 	}
 
 	inputChange(input, name) {
 		const value = input.value;
-		const validation = validateInputValue(value);
 		if (name === "email") {
 			return this.setState({
-				email: value,
-				emailError: (!validation.isValid) ? validation.text : ""
+				email: value
 			});
 		} else {
 			return this.setState({
-				password: value,
-				passwordError: (!validation.isValid) ? validation.text : ""
+				password: value
 			});
 		}
 		return;
 	}
 
 	login() {
-		const { email, password, emailError, passwordError } = this.state;
+		const { email, password } = this.state;
 		const { dispatch } = this.props;
-		if (emailError || passwordError || email === "" || password === "") return;
+		if (email === "" || password === "") return;
 		// Dispatching signIn action creator
 		dispatch(signIn(email, password));
 	}
@@ -73,17 +68,15 @@ class Login extends Component {
 					<DialogTitle>Sign In</DialogTitle>
 					<DialogContent classes={{root: classes.root}}>
 						<TextField 
-							error={!!this.state.emailError}
-							label={this.state.emailError || "Email"}
+							label="Email"
 							onChange={(e) => this.inputChange(e.target, "email")}
 							style={{width: "100%"}} /><br />
 						<TextField 
-							error={!!this.state.passwordError}
 							onChange={(e) => this.inputChange(e.target, "password")} 
 							type="password" 
-							label={this.state.passwordError || "Password"} 
+							label="Password"
 							style={{width: "100%"}} />
-						{auth.user === null ? <FormHelperText error={true}>Email and password combination doesn't exist</FormHelperText> : undefined}
+						{!!auth.errorMessage ? <FormHelperText error={true}>{auth.errorMessage}</FormHelperText> : undefined}
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={() => this.login()} color="primary">

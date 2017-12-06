@@ -34,7 +34,7 @@ class Routes extends Component {
 					<PublicRoute
 						authed={() => auth.isAuthenticated}
 						path="/register"
-						component={(routerProps) => <Register dispatch={dispatch} {...routerProps} />}
+						component={(routerProps) => <Register auth={auth} dispatch={dispatch} {...routerProps} />}
 					/>
 					<PrivateRoute
 						authed={() => auth.isAuthenticated}

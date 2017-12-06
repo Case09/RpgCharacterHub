@@ -21,7 +21,7 @@ export function signIn(username, password) {
                 return dispatch(loginSuccessAction(resp));
             })
             .catch(error => {
-                return dispatch(loginFailedAction());
+                return dispatch(loginFailedAction(error.message))
             })
     }
 }
@@ -39,7 +39,7 @@ export function signUp(username, password) {
                 return dispatch(registerSuccessAction(resp))
             })
             .catch(error => {
-                return dispatch(registerFailedAction())
+                return dispatch(registerFailedAction(error.message))
             })
     }
 }
@@ -63,9 +63,10 @@ function loginSuccessAction(user) {
     }
 }
 
-function loginFailedAction() {
+function loginFailedAction(errorMessage) {
     return {
-        type: ActionTypes.loginFailed
+        type: ActionTypes.loginFailed,
+        errorMessage
     }
 }
 
@@ -76,8 +77,9 @@ function registerSuccessAction(user) {
     }
 }
 
-function registerFailedAction() {
+function registerFailedAction(errorMessage) {
     return {
-        type: ActionTypes.registerFailed
+        type: ActionTypes.registerFailed,
+        errorMessage
     }
 }
