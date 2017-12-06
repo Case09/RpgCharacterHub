@@ -3,11 +3,12 @@ import "typeface-roboto"; // Material fonts
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import store from "./store/store";
 import { checkAuth } from './actions/auth';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Routes from './Routes';
+import Theme from './Theme';
 
 class Main extends Component {
 
@@ -23,7 +24,9 @@ class Main extends Component {
 		return (
 			<Provider store={store}>
 				<Router>
-					<Routes />
+					<Theme>
+						<Routes />
+					</Theme>
 				</Router>
 			</Provider>
 		);
