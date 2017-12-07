@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
-export function PrivateRoute({ component: Component, authed, ...rest }) {
-	const isAuthenticated = authed();
+const Private = ({ component: Component, auth, ...rest }) => {
+	const isAuthenticated = auth.isAuthenticated;
 	return (
-		<Route
-			{...rest}
+		<Route {...rest}
 			render={props =>
 				isAuthenticated === true ? (
 					<Component {...props} />
@@ -22,18 +24,33 @@ export function PrivateRoute({ component: Component, authed, ...rest }) {
 	);
 }
 
-export function PublicRoute({ component: Component, authed, ...rest }) {
-	const isAuthenticated = authed();
+export const PrivateRoute = connect(mapStateToProps)(Private);
+
+function mapStateToProps(state) {
+	return {
+		auth: state.auth
+	}
+}
+
+const Public = ({ component: Component, auth, ...rest }) => {
+	const isAuthenticated = auth.isAuthenticated;
 	return (
-		<Route
-			{...rest}
+		<Route {...rest}
 			render={props =>
 				isAuthenticated === false ? (
 					<Component {...props} />
 				) : (
-					<Redirect to="/dashboard" />
+					<Redirect
+						to={{
+							pathname: "/dashboard",
+							state: { from: props.location }
+						}}
+					/>
 				)
 			}
 		/>
 	);
 }
+
+export const PublicRoute = connect(mapStateToProps)(Public);
+

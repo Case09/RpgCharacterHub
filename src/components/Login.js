@@ -13,6 +13,7 @@ import { FormHelperText } from 'material-ui/Form';
 import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import { signIn } from '../actions/auth';
+import { connect } from 'react-redux';
 
 /**
  * Login form component
@@ -95,10 +96,17 @@ class Login extends Component {
 	}
 }
 
+function mapStateToProps(state) {
+	return {
+		auth: state.auth,
+		dispatch: state.dispatch
+	}
+}
+
 Login.propTypes = {
 	auth: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired,
 	classes: PropTypes.object.isRequired
 }
 
-export default withStyles(style)(Login)
+export default withStyles(style)(connect(mapStateToProps)(Login));
