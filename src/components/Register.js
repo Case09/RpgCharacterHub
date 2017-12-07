@@ -12,6 +12,8 @@ import { FormHelperText } from 'material-ui/Form';
 import withStyles from 'material-ui/styles/withStyles';
 import { indigo } from 'material-ui/colors';
 import { signUp } from '../actions/auth';
+import { connect } from 'react-redux';
+
 
 const style = {
 	paperWidthSm: {
@@ -89,4 +91,11 @@ class Register extends Component {
     }
 }
 
-export default withStyles(style)(Register);
+function mapStateToProps(state) {
+	return {
+		auth: state.auth,
+		dispatch: state.dispatch
+	}
+}
+
+export default withStyles(style)(connect(mapStateToProps)(Register));

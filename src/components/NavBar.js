@@ -5,7 +5,6 @@ import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import IconButton from "material-ui/IconButton";
 import { Link } from 'react-router-dom';
-import { signOut } from '../actions/auth';
 
 export default class NavBar extends Component {
 	constructor(props) {
@@ -13,7 +12,7 @@ export default class NavBar extends Component {
 	}
 
 	render() {
-		const { auth, dispatch } = this.props;
+		const { auth, signOut } = this.props;
 		return (
 			<div>
 				<AppBar style={{margin: 0}} position="static" color="primary">
@@ -26,7 +25,7 @@ export default class NavBar extends Component {
 								<Link style={{position: "absolute", right: "10px", textDecoration: "none", color: "inherit"}} to="/login">
 									<Button color="contrast">Login</Button>
 								</Link> : 
-								<Button style={{position: "absolute", right: "10px"}} onClick={() => dispatch(signOut())} color="contrast">Logout</Button>
+								<Button style={{position: "absolute", right: "10px"}} onClick={() => signOut()} color="contrast">Logout</Button>
 							}
 					</Toolbar>
 				</AppBar>

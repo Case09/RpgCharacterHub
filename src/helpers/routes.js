@@ -6,22 +6,28 @@ import { withRouter } from 'react-router-dom';
 
 const Private = ({ component: Component, auth, ...rest }) => {
 	const isAuthenticated = auth.isAuthenticated;
-	return (
-		<Route {...rest}
-			render={props =>
-				isAuthenticated === true ? (
-					<Component {...props} />
-				) : (
-					<Redirect
-						to={{
-							pathname: "/login",
-							state: { from: props.location }
-						}}
-					/>
-				)
-			}
-		/>
-	);
+
+	if (isAuthenticated !== undefined) {
+		return (
+			<Route {...rest}
+				render={props =>
+					isAuthenticated === true ? (
+						<Component {...props} />
+					) : (
+						<Redirect
+							to={{
+								pathname: "/login",
+								state: { from: props.location }
+							}}
+						/>
+					)
+				}
+			/>
+		);
+	} else {
+		return <div></div>
+	}
+	
 }
 
 export const PrivateRoute = connect(mapStateToProps)(Private);
@@ -34,22 +40,27 @@ function mapStateToProps(state) {
 
 const Public = ({ component: Component, auth, ...rest }) => {
 	const isAuthenticated = auth.isAuthenticated;
-	return (
-		<Route {...rest}
-			render={props =>
-				isAuthenticated === false ? (
-					<Component {...props} />
-				) : (
-					<Redirect
-						to={{
-							pathname: "/dashboard",
-							state: { from: props.location }
-						}}
-					/>
-				)
-			}
-		/>
-	);
+	if (isAuthenticated !== undefined) {
+		return (
+			<Route {...rest}
+				render={props =>
+					isAuthenticated === false ? (
+						<Component {...props} />
+					) : (
+						<Redirect
+							to={{
+								pathname: "/dashboard",
+								state: { from: props.location }
+							}}
+						/>
+					)
+				}
+			/>
+		);
+	} else {
+		return <div></div>
+	}
+	
 }
 
 export const PublicRoute = connect(mapStateToProps)(Public);

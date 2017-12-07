@@ -13,8 +13,8 @@ class Routes extends Component {
 	render() {
 		return (
 			<div>	
+				<Home />
 				<Switch>
-					<Route component={Home} />
 					<PublicRoute
 						path="/login"
 						component={Login}
