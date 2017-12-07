@@ -17,7 +17,7 @@ class Greetings extends Component {
         const { classes } = this.props;
         return (
             <Grid className={classes.root} item xs={12}>
-                <Typography type="display1" color="accent">Welcome to RPG Character Hub</Typography>
+                <Typography type="display1" color="accent">RPG Character sheet sharing hub</Typography>
             </Grid>
         )
     }
