@@ -8,6 +8,7 @@ import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import Book from 'material-ui-icons/Book';
 import Favorite from 'material-ui-icons/Favorite';
+import Tooltip from 'material-ui/Tooltip';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 
 const style = theme => ({
@@ -20,16 +21,22 @@ const Navigation = ({classes}) => {
     return (
         <div>
             <Link to="/sheets/new">
-                <Button fab color="primary" aria-label="new-sheet" className={classes.button}>
-                    <AddIcon />
-                </Button>
+                <Tooltip title="Add new character sheet" placement="bottom">
+                    <Button fab color="primary" aria-label="new-sheet" className={classes.button}>
+                        <AddIcon />
+                    </Button>
+                </Tooltip>
             </Link>
-            <Button fab color="accent" aria-label="my-sheets" className={classes.button}>
-                <Book />
-            </Button>
-            <Button fab color="accent" aria-label="favorites" className={classes.button}>
-                <Favorite />
-            </Button>
+            <Tooltip title="My Character Sheets" placement="bottom"> 
+                <Button fab color="accent" aria-label="my-sheets" className={classes.button}>
+                    <Book />
+                </Button>
+            </Tooltip>
+            <Tooltip title="Favorites" placement="bottom">
+                <Button fab color="accent" aria-label="favorites" className={classes.button}>
+                    <Favorite />
+                </Button>
+            </Tooltip>
         </div>
     )
 }

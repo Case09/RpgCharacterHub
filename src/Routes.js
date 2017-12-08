@@ -3,10 +3,11 @@ import { PrivateRoute, PublicRoute } from "./helpers/routes";
 import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-import Home from "./containers/Home";
-import Dashboard from "./containers/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Home from "./containers/Home";
+import Dashboard from "./containers/Dashboard";
+import Sheets from "./containers/Sheets";
 
 // /sheets list of my sheets
 // /sheets/new create new sheet
@@ -34,6 +35,10 @@ class Routes extends Component {
 					<PrivateRoute
 						path="/dashboard"
 						component={Dashboard}
+					/>
+					<PrivateRoute
+						path="/sheets"
+						component={Sheets}
 					/>
 				</Switch>
 			</div>

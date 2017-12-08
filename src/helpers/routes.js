@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 const Private = ({ component: Component, auth, ...rest }) => {
 	const isAuthenticated = auth.isAuthenticated;
@@ -29,7 +28,7 @@ const Private = ({ component: Component, auth, ...rest }) => {
 	
 }
 
-export const PrivateRoute = withRouter(connect(mapStateToProps)(Private));
+export const PrivateRoute = connect(mapStateToProps)(Private);
 
 function mapStateToProps(state) {
 	return {
@@ -61,5 +60,5 @@ const Public = ({ component: Component, auth, ...rest }) => {
 	
 }
 
-export const PublicRoute = withRouter(connect(mapStateToProps)(Public));
+export const PublicRoute = connect(mapStateToProps)(Public);
 
