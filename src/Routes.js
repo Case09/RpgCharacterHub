@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { PrivateRoute, PublicRoute } from "./helpers/routes";
-import { Route, Switch } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -24,22 +23,11 @@ class Routes extends Component {
 			<div>	
 				<Home />
 				<Switch>
-					<PublicRoute
-						path="/login"
-						component={Login}
-					/>
-					<PublicRoute
-						path="/register"
-						component={Register}
-					/>
-					<PrivateRoute
-						path="/dashboard"
-						component={Dashboard}
-					/>
-					<PrivateRoute
-						path="/sheets"
-						component={Sheets}
-					/>
+					<PublicRoute exact path="/" />
+					<PublicRoute path="/login" component={Login} />
+					<PublicRoute path="/register" component={Register} />
+					<PrivateRoute path="/dashboard" component={Dashboard} />
+					<PrivateRoute path="/sheets" component={Sheets} />
 				</Switch>
 			</div>
 		);

@@ -16,11 +16,12 @@ const NavBar = ({auth, signOut}) => {
 					RPG-CHub
 				</Typography>
 					{
-						!auth.isAuthenticated ? 
-						<Link style={{position: "absolute", right: "10px", textDecoration: "none", color: "inherit"}} to="/login">
-							<Button color="contrast">Login</Button>
-						</Link> : 
-						<Button style={{position: "absolute", right: "10px"}} onClick={() => signOut()} color="contrast">Logout</Button>
+						auth.isAuthenticated !== undefined ? 
+							!auth.isAuthenticated ? 
+							<Link style={{position: "absolute", right: "10px", textDecoration: "none", color: "inherit"}} to="/login">
+								<Button color="contrast">Login</Button>
+							</Link> : 
+							<Button style={{position: "absolute", right: "10px"}} onClick={() => signOut()} color="contrast">Logout</Button> : null
 					}
 			</Toolbar>
 		</AppBar>

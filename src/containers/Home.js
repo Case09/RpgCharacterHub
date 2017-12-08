@@ -13,26 +13,11 @@ class Main extends Component {
 
     render() {
         const { auth, signOut } = this.props;
-
-        if (auth.isAuthenticated !== undefined) {
-            if (auth.isAuthenticated) {
-                return (
-                    <div>
-                        <NavBar auth={auth} signOut={() => signOut()}/>
-                        <Redirect to="/dashboard" />
-                    </div>
-                )
-            } else {
-                return (
-                    <div>
-                        <NavBar auth={auth} signOut={() => signOut()}/>
-                        <Redirect to="/login" />
-                    </div>
-                )
-            }
-        } else {
-            return <div></div>
-        }
+        return (
+            <div>
+                <NavBar auth={auth} signOut={() => signOut()}/>
+            </div>
+        )
     }
 }
 

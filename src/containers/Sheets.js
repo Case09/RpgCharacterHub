@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import NewSheet from '../components/NewSheet';
 
 class Sheets extends Component {
     constructor(props) {
@@ -8,12 +11,24 @@ class Sheets extends Component {
     }
 
     render() {
+        const { match } = this.props;
         return (
             <div>
-                
+                <h1>hello</h1>
+                <Route path={`${match.url}/new`} component={NewSheet} />
             </div>
         )
     }
 }
 
-export default Sheets;
+function mapStateToProps(state) {
+    return {
+        
+    }
+}
+
+Sheets.propTypes = {
+    match: PropTypes.object.isRequired
+}
+
+export default withRouter(connect(mapStateToProps)(Sheets));
