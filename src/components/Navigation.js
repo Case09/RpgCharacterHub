@@ -16,30 +16,22 @@ const style = theme => ({
     },
 });
 
-class Navigation extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const { classes } = this.props;
-        return (
-            <div>
-                <Link to="/new-sheet">
-                    <Button fab color="primary" aria-label="new-sheet" className={classes.button}>
-                        <AddIcon />
-                    </Button>
-                </Link>
-                <Button fab color="accent" aria-label="my-sheets" className={classes.button}>
-                    <Book />
+const Navigation = ({classes}) => {
+    return (
+        <div>
+            <Link to="/sheets/new">
+                <Button fab color="primary" aria-label="new-sheet" className={classes.button}>
+                    <AddIcon />
                 </Button>
-                <Button fab color="accent" aria-label="favorites" className={classes.button}>
-                    <Favorite />
-                </Button>
-            </div>
-        )
-    }
+            </Link>
+            <Button fab color="accent" aria-label="my-sheets" className={classes.button}>
+                <Book />
+            </Button>
+            <Button fab color="accent" aria-label="favorites" className={classes.button}>
+                <Favorite />
+            </Button>
+        </div>
+    )
 }
 
 Navigation.propTypes = {

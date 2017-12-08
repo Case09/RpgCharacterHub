@@ -4,9 +4,17 @@ import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 import Home from "./containers/Home";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./containers/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+
+// /sheets list of my sheets
+// /sheets/new create new sheet
+// /sheets/:id view sheet
+// /sheets/edit/:id edit sheet
+// /public-sheets view list of all public sheets
+// /public-sheets/:id view public sheet
+// /favorites /favorite sheets
 
 class Routes extends Component {
 

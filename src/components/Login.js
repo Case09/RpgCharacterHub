@@ -5,7 +5,6 @@ import { withStyles } from 'material-ui/styles';
 import { signIn } from '../actions/auth';
 import { connect } from 'react-redux';
 
-
 import Button from "material-ui/Button";
 import Dialog, {
 	DialogActions,

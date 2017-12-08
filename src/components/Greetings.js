@@ -12,16 +12,12 @@ const styles = theme => ({
     }
 });
 
-class Greetings extends Component {
-
-    render() {
-        const { classes } = this.props;
-        return (
-            <Grid className={classes.root} item xs={12}>
-                <Typography type="display1" color="accent">RPG Character sheet sharing hub</Typography>
-            </Grid>
-        )
-    }
+const Greetings = ({classes}) => {
+    return (
+        <Grid className={classes.root} item xs={12}>
+            <Typography type="display1" color="accent">RPG Character sheet sharing hub</Typography>
+        </Grid>
+    );
 }
 
 Greetings.propTypes = {
