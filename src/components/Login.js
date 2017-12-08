@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import { login } from "../helpers/auth";
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';;
+import { Link } from 'react-router-dom';
+import { withStyles } from 'material-ui/styles';
+import { signIn } from '../actions/auth';
+import { connect } from 'react-redux';
+
+
 import Button from "material-ui/Button";
 import Dialog, {
 	DialogActions,
@@ -9,11 +14,7 @@ import Dialog, {
 	DialogTitle,
   } from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';  
-import { FormHelperText } from 'material-ui/Form';
-import { Link } from 'react-router-dom';
-import { withStyles } from 'material-ui/styles';
-import { signIn } from '../actions/auth';
-import { connect } from 'react-redux';
+import { FormHelperText } from 'material-ui/Form'
 
 /**
  * Login form component

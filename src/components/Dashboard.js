@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+
+import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 
 import Greetings from './Greetings';
@@ -15,9 +16,6 @@ const style = theme => ({
         marginBottom: "10px",
         paddingLeft: "10px",
         paddingRight: "10px"
-    },
-    paper: {
-        padding: 16
     },
     latest: {
         paddingTop: "23px"
@@ -37,13 +35,9 @@ class Dashboard extends Component {
                     <Greetings />
                     <Grid item xs={12} sm={7}>
                         <Navigation />
-                        <Paper className={classes.paper}>
-
-                        </Paper>
                     </Grid>
                     <Grid item xs={12} sm={5}>
                         <Typography className={classes.latest} type="headline" color="accent">Latest character sheets:</Typography>
-
                     </Grid>
                 </Grid>
             </div>

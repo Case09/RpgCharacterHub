@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NavBar from '../components/NavBar';
-import { signOut } from '../actions/auth';
 import { Redirect } from 'react-router-dom';
+import { signOut } from '../actions/auth';
+
+import NavBar from '../components/NavBar';
 
 class Main extends Component {
     constructor(props) {
@@ -12,20 +13,24 @@ class Main extends Component {
     render() {
         const { auth, signOut } = this.props;
 
-        if (auth.isAuthenticated) {
-            return (
-                <div>
-                    <NavBar auth={auth} signOut={() => signOut()}/>
-                    <Redirect to="/dashboard" />
-                </div>
-            )
+        if (auth.isAuthenticated !== undefined) {
+            if (auth.isAuthenticated) {
+                return (
+                    <div>
+                        <NavBar auth={auth} signOut={() => signOut()}/>
+                        <Redirect to="/dashboard" />
+                    </div>
+                )
+            } else {
+                return (
+                    <div>
+                        <NavBar auth={auth} signOut={() => signOut()}/>
+                        <Redirect to="/login" />
+                    </div>
+                )
+            }
         } else {
-            return (
-                <div>
-                    <NavBar auth={auth} signOut={() => signOut()}/>
-                    <Redirect to="/login" />
-                </div>
-            )
+            return <div></div>
         }
     }
 }
@@ -41,7 +46,5 @@ function mapDispatchToProps(dispatch) {
         signOut: () => dispatch(signOut())
     }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

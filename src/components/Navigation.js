@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import { Link } from 'react-router-dom';
+
 import NoteAdd from 'material-ui-icons/NoteAdd';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import Book from 'material-ui-icons/Book';
 import Favorite from 'material-ui-icons/Favorite';
-import { Link } from 'react-router-dom';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
 
 const style = theme => ({

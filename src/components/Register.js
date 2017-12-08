@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import Button from "material-ui/Button";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import withStyles from 'material-ui/styles/withStyles';
+import { signUp } from '../actions/auth';
+
+import Button from "material-ui/Button";
 import Dialog, {
 	DialogActions,
 	DialogContent,
@@ -9,10 +14,7 @@ import Dialog, {
   } from 'material-ui/Dialog';
 import TextField from 'material-ui/TextField';  
 import { FormHelperText } from 'material-ui/Form';
-import withStyles from 'material-ui/styles/withStyles';
 import { indigo } from 'material-ui/colors';
-import { signUp } from '../actions/auth';
-import { connect } from 'react-redux';
 
 
 const style = {
@@ -23,7 +25,6 @@ const style = {
 		textAlign: 'center'
 	}
 }
-
 /*
  * Registration form component
 */
@@ -96,6 +97,12 @@ function mapStateToProps(state) {
 		auth: state.auth,
 		dispatch: state.dispatch
 	}
+}
+
+Register.propTypes = {
+	auth: PropTypes.object.isRequired,
+	dispatch: PropTypes.func.isRequired,
+	classes: PropTypes.object.isRequired
 }
 
 export default withStyles(style)(connect(mapStateToProps)(Register));

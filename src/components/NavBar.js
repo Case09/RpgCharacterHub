@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Button from "material-ui/Button";
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
 import IconButton from "material-ui/IconButton";
-import { Link } from 'react-router-dom';
 
 export default class NavBar extends Component {
 	constructor(props) {
@@ -32,4 +34,9 @@ export default class NavBar extends Component {
 			</div>
 		);
 	}
+}
+
+NavBar.propTypes = {
+	auth: PropTypes.object.isRequired,
+	signOut: PropTypes.func.isRequired
 }

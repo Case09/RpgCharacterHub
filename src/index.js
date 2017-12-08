@@ -16,7 +16,7 @@ class Main extends Component {
 		super(props);
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		store.dispatch(checkAuth());
 	}
 

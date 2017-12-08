@@ -16,8 +16,7 @@ const Private = ({ component: Component, auth, ...rest }) => {
 					) : (
 						<Redirect
 							to={{
-								pathname: "/login",
-								state: { from: props.location }
+								pathname: "/login"
 							}}
 						/>
 					)
@@ -30,7 +29,7 @@ const Private = ({ component: Component, auth, ...rest }) => {
 	
 }
 
-export const PrivateRoute = connect(mapStateToProps)(Private);
+export const PrivateRoute = withRouter(connect(mapStateToProps)(Private));
 
 function mapStateToProps(state) {
 	return {
@@ -49,8 +48,7 @@ const Public = ({ component: Component, auth, ...rest }) => {
 					) : (
 						<Redirect
 							to={{
-								pathname: "/dashboard",
-								state: { from: props.location }
+								pathname: "/dashboard"
 							}}
 						/>
 					)
@@ -63,5 +61,5 @@ const Public = ({ component: Component, auth, ...rest }) => {
 	
 }
 
-export const PublicRoute = connect(mapStateToProps)(Public);
+export const PublicRoute = withRouter(connect(mapStateToProps)(Public));
 
