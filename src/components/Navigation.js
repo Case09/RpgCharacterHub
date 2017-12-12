@@ -27,11 +27,13 @@ const Navigation = ({classes}) => {
                     </Button>
                 </Tooltip>
             </Link>
-            <Tooltip title="My Character Sheets" placement="bottom"> 
-                <Button fab color="accent" aria-label="my-sheets" className={classes.button}>
-                    <Book />
-                </Button>
-            </Tooltip>
+            <Link to="/sheets">
+                <Tooltip title="My Character Sheets" placement="bottom"> 
+                    <Button fab color="accent" aria-label="my-sheets" className={classes.button}>
+                        <Book />
+                    </Button>
+                </Tooltip>
+            </Link>
             <Tooltip title="Favorites" placement="bottom">
                 <Button fab color="accent" aria-label="favorites" className={classes.button}>
                     <Favorite />

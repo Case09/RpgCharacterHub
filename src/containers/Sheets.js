@@ -3,7 +3,7 @@ import { Redirect, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import NewSheet from '../components/NewSheet';
+import NewSheet from './NewSheet';
 
 class Sheets extends Component {
     constructor(props) {
@@ -14,7 +14,6 @@ class Sheets extends Component {
         const { match } = this.props;
         return (
             <div>
-                <h1>hello</h1>
                 <Route path={`${match.url}/new`} component={NewSheet} />
             </div>
         )
