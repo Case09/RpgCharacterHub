@@ -69,7 +69,7 @@ const SheetForm = ({classes, create}) => {
                     <Link to="/dashboard" style={{textDecoration: 'none'}}>
                         <Button raised color="accent" className={classes.button}>Back</Button>
                     </Link>
-                    <Button raised color="primary" className={classes.button} onClick={() => create({name: "sheet1"})}>Save</Button>
+                    <Button raised color="primary" className={classes.button} onClick={() => create()}>Save</Button>
                     <FormControlLabel
                         style={{verticalAlign: 'middle'}}
                         control={ <Checkbox className={classes.checkbox} value="makePublic"/> }

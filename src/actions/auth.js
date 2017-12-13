@@ -6,7 +6,7 @@ export function checkAuth() {
     return dispatch => {
         firebaseAuth().onAuthStateChanged((user) => {
             if (user) {
-                dispatch(signedInAction())
+                dispatch(signedInAction(user))
             } else {
                 dispatch(signedOutAction())
             }
@@ -44,9 +44,10 @@ export function signUp(username, password) {
     }
 }
 
-function signedInAction() {
+function signedInAction(user) {
     return {
-        type: ActionTypes.isSignedIn
+        type: ActionTypes.isSignedIn,
+        user
     }
 }
 

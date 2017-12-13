@@ -8,11 +8,28 @@ class NewSheet extends Component {
         super(props)
     }
 
+    createNewSheet() {
+        const { auth, createSheet } = this.props;
+        const email = auth.user.email;
+        const data = {
+            name: "nesto1",
+            email
+        };
+        
+        return createSheet(data);
+    }
+
     render() {
-        const { createSheet } = this.props;
+        const { createSheet, auth } = this.props;
         return (
-            <SheetForm create={(data) => createSheet(data)}/>
+            <SheetForm create={(data) => this.createNewSheet()}/>
         )
+    }
+}
+
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
     }
 }
 
@@ -22,4 +39,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(NewSheet);
+export default connect(mapStateToProps, mapDispatchToProps)(NewSheet);

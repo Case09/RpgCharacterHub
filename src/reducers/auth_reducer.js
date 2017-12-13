@@ -4,7 +4,8 @@ export function authReducer(state = {}, action) {
 	switch (action.type) {
 		case ActionTypes.isSignedIn: {
 			return Object.assign({}, state, {
-				isAuthenticated: true
+				isAuthenticated: true,
+				user: action.user
 			})
 		}
 		case ActionTypes.isSignedOut: {
