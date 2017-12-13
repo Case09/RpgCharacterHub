@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import deepOrange from "material-ui/colors/deepOrange";
-import grey from "material-ui/colors/grey";
+import deepPurple from "material-ui/colors/deepPurple";
 import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
 
 // Theme configuration
 const theme = createMuiTheme({
 	palette: {
 		primary: deepOrange,
-		secondary: grey
+		secondary: {
+			...deepPurple
+		}
 	},
 	status: {
 		danger: "orange"
