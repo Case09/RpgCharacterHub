@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SheetForm from '../components/SheetForm';
+import { connect } from 'react-redux';
+import { createSheet } from '../actions/sheets';
 
 class NewSheet extends Component {
     constructor(props) {
@@ -7,10 +9,17 @@ class NewSheet extends Component {
     }
 
     render() {
+        const { createSheet } = this.props;
         return (
-            <SheetForm />
+            <SheetForm create={(data) => createSheet(data)}/>
         )
     }
 }
 
-export default NewSheet;
+function mapDispatchToProps(dispatch) {
+    return {
+        createSheet: (data) => dispatch(createSheet(data))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(NewSheet);

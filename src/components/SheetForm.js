@@ -37,7 +37,7 @@ const styles = theme => ({
     }
 })
 
-const SheetForm = ({classes}) => {
+const SheetForm = ({classes, create}) => {
     return (
         <div>
             <Grid className={classes.root} container justify="center" spacing={0}> 
@@ -69,7 +69,7 @@ const SheetForm = ({classes}) => {
                     <Link to="/dashboard" style={{textDecoration: 'none'}}>
                         <Button raised color="accent" className={classes.button}>Back</Button>
                     </Link>
-                    <Button raised color="primary" className={classes.button}>Save</Button>
+                    <Button raised color="primary" className={classes.button} onClick={() => create({name: "sheet1"})}>Save</Button>
                     <FormControlLabel
                         style={{verticalAlign: 'middle'}}
                         control={ <Checkbox className={classes.checkbox} value="makePublic"/> }

@@ -4,7 +4,10 @@ const actionTypes = {
 	loginSuccess: "LOGIN_SUCCESS",
 	loginFailed: "LOGIN_FAILED",
 	registerSuccess: "REGISTER_SUCCESS",
-	registerFailed: "REGISTER_FAILED"
+	registerFailed: "REGISTER_FAILED",
+	createSheet: "CREATE_SHEET",
+	createSheetSuccess: "CREATE_SHEET_SUCCESS",
+	createSheetFailed: "CREATE_SHEET_FAILED",
 };
 
 export default actionTypes;
