@@ -23,7 +23,7 @@ class Routes extends Component {
 			<div>	
 				<Home />
 				<Switch>
-					<PublicRoute exact path="/" />
+					<PublicRoute exact path="/" component={Login}/>
 					<PublicRoute path="/login" component={Login} />
 					<PublicRoute path="/register" component={Register} />
 					<PrivateRoute path="/dashboard" component={Dashboard} />
