@@ -19,9 +19,9 @@ import { create } from '../helpers/sheets';
 //     }
 // }
 
-export function createSheet(creator, data) {
+export function createSheet(uid, data) {
     return dispatch => {
-        create(creator, data)
+        create(uid, data)
             .then(resp => createSheetSuccess(resp))
             .catch(error => createSheetFailed())
     }

@@ -1,6 +1,6 @@
 import ActionTypes from '../constants/action_types';
 import { database, firebaseAuth } from '../config/database';
-import { login, logout, createUser } from '../helpers/auth';
+import { login, logout, createUser, saveUser } from '../helpers/auth';
 
 export function checkAuth() {
     return dispatch => {
@@ -35,8 +35,9 @@ export function signOut() {
 export function signUp(username, password) {
     return dispatch => {
         createUser(username, password)
-            .then(resp => {
-                return dispatch(registerSuccessAction(resp))
+            .then(user => {
+                return saveUser(user)
+                    .then(dispatch(registerSuccessAction(user)))
             })
             .catch(error => {
                 return dispatch(registerFailedAction(error.message))

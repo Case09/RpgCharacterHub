@@ -37,7 +37,7 @@ const styles = theme => ({
     }
 })
 
-const SheetForm = ({classes, create, onInputChange}) => {
+const SheetForm = ({classes, create, onInputChange, isPublic, makePublic}) => {
     return (
         <div>
             <Grid className={classes.root} container justify="center" spacing={0}> 
@@ -72,7 +72,12 @@ const SheetForm = ({classes, create, onInputChange}) => {
                     <Button raised color="primary" className={classes.button} onClick={() => create()}>Save</Button>
                     <FormControlLabel
                         style={{verticalAlign: 'middle'}}
-                        control={ <Checkbox className={classes.checkbox} value="makePublic"/> }
+                        control={ <Checkbox 
+                            className={classes.checkbox} 
+                            checked={isPublic}
+                            value="public"
+                            onChange={(e) => makePublic(e, 'public')} /> 
+                        }
                         label="Make Public" />
                 </Grid>
             </Grid>

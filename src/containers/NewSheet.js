@@ -5,23 +5,42 @@ import { createSheet } from '../actions/sheets';
 
 class NewSheet extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            public: false
+        }
     }
 
     createNewSheet() {
         const { auth, createSheet } = this.props;
-        const email = auth.user.email;
+        const uid = auth.user.uid;
+        const isPublic = this.state.public;
+
         const data = {
             ...this.state
         };
+        // Making sheet object
+        const sendData = {
+            uid,
+            isPublic,
+            data
+        }
         
-        return createSheet(email, data);
+        return createSheet(sendData);
     }
 
+    // TextField onChange
     onInputChange(e, label) {
         const value = e.target.value;
         this.setState({
             [label]: value
+        });
+    }
+
+    // Make Public checkbox control, passing boolean value from state
+    makePublic(e, name) {
+        this.setState({
+            [name]: e.target.checked
         });
     }
 
@@ -30,6 +49,8 @@ class NewSheet extends Component {
         return (
             <SheetForm 
                 onInputChange={(e, label) => this.onInputChange(e, label)}
+                isPublic={this.state.public}
+                makePublic={(e, name) => this.makePublic(e, name)}
                 create={(data) => this.createNewSheet()}/>
         )
     }
@@ -43,7 +64,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        createSheet: (email, data) => dispatch(createSheet(email, data))
+        createSheet: (sendData) => dispatch(createSheet(sendData))
     }
 }
 
