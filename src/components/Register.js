@@ -34,6 +34,7 @@ class Register extends Component {
     constructor(props) {
 		super(props);
 		this.state = {
+			username: "",
 			email: "",
 			password: ""
 		}
@@ -45,6 +46,10 @@ class Register extends Component {
 			return this.setState({
 				email: value
 			});
+		} else if(name === "username") {
+			return this.setState({
+				username: value
+			});
 		} else {
 			return this.setState({
 				password: value
@@ -55,9 +60,9 @@ class Register extends Component {
 
 	signUp() {
 		const { dispatch } = this.props;
-		const { email, password } = this.state;
-		if (email === "" || password === "") return;
-		dispatch(signUp(email, password));
+		const { email, password, username } = this.state;
+		if (email === "" || password === "" || username === "") return;
+		dispatch(signUp(email, password, username));
 	}
 
     render() {
@@ -67,6 +72,10 @@ class Register extends Component {
                 <Dialog open={true} classes={{paperWidthSm: classes.paperWidthSm}}>
 					<DialogTitle>Sign Up</DialogTitle>
 					<DialogContent classes={{root: classes.root}}>
+						<TextField 
+							label="User Name"
+							onChange={(e) => this.inputChange(e.target, "username")}
+							style={{width: "100%"}} /><br />
 						<TextField 
 							label="Email"
 							onChange={(e) => this.inputChange(e.target, "email")}

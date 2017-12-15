@@ -11,6 +11,7 @@ class NewSheet extends Component {
         }
     }
 
+    // Structuring data for sending, calling createSheet action creator
     createNewSheet() {
         const { auth, createSheet } = this.props;
         const uid = auth.user.uid;

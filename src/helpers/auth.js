@@ -1,7 +1,8 @@
 import { database, firebaseAuth } from "../config/database";
 
 export function createUser(email, pw) {
-	return firebaseAuth().createUserWithEmailAndPassword(email, pw);
+	return firebaseAuth()
+		.createUserWithEmailAndPassword(email, pw);
 }
 
 export function logout() {
@@ -19,6 +20,7 @@ export function resetPassword(email) {
 export function saveUser(user) {
 	return database.ref(`users/${user.uid}`)
 		.set({
+			displayName: user.displayName,
 			email: user.email,
 			uid: user.uid
 		})

@@ -13,7 +13,9 @@ const NavBar = ({auth, signOut}) => {
 		<AppBar style={{margin: 0}} position="static" color="primary">
 			<Toolbar>
 				<Typography type="title" color="inherit">
-					RPG-CHub
+					{
+						auth.isAuthenticated !== undefined ? `Welcome, ${auth.user.displayName}` : null
+					}
 				</Typography>
 					{
 						auth.isAuthenticated !== undefined ? 

@@ -32,12 +32,19 @@ export function signOut() {
     }
 }
 
-export function signUp(username, password) {
+export function signUp(username, password, displayName) {
     return dispatch => {
         createUser(username, password)
+            // If success
             .then(user => {
-                return saveUser(user)
-                    .then(dispatch(registerSuccessAction(user)))
+                // Enter User Name or displayName
+                return user.updateProfile({displayName})
+                    // if success
+                    .then(() => {
+                        // Save user info to /users collection
+                        return saveUser(user)
+                            .then(dispatch(registerSuccessAction(user)))
+                    })
             })
             .catch(error => {
                 return dispatch(registerFailedAction(error.message))
