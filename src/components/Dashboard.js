@@ -17,7 +17,13 @@ const style = theme => ({
         paddingRight: "10px"
     },
     latest: {
-        paddingTop: "23px"
+        paddingTop: "23px",
+        margin: theme.spacing.unit
+    },
+    myLatest: {
+        borderRadius: 3,
+        margin: theme.spacing.unit,
+        background: "lightGray"
     }
 });
 
@@ -25,11 +31,17 @@ const DashboardLayout = ({classes}) => {
     return (
         <Grid className={classes.root} container spacing={24} >
             <Greetings />
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={6}>
                 <Navigation />
             </Grid>
-            <Grid item xs={12} sm={5}>
+            <Grid item xs={5}>
                 <Typography className={classes.latest} type="headline" color="accent">Latest public character sheets:</Typography>
+            </Grid>
+            <Grid className={classes.myLatest} item xs={6}>
+                Latest Sheets
+            </Grid>
+            <Grid className={classes.myLatest} item xs={5}>
+                Latest Public Sheets
             </Grid>
         </Grid>
     );
