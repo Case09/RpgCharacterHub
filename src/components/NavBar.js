@@ -14,7 +14,9 @@ const NavBar = ({auth, signOut}) => {
 			<Toolbar>
 				<Typography type="title" color="inherit">
 					{
-						auth.isAuthenticated !== undefined ? `Welcome, ${auth.user.displayName}` : null
+						auth.isAuthenticated !== undefined ? 
+							auth.user ? `Welcome, ${auth.user.displayName}` : null
+						: null
 					}
 				</Typography>
 					{
