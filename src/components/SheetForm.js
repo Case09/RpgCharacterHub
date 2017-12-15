@@ -37,33 +37,33 @@ const styles = theme => ({
     }
 })
 
-const SheetForm = ({classes, create}) => {
+const SheetForm = ({classes, create, onInputChange}) => {
     return (
         <div>
             <Grid className={classes.root} container justify="center" spacing={0}> 
                 <SheetFormTitle />
                 <Grid className={classes.grid} item xs={12} md={2}>
-                    <TextField label="Name" className={classes.textField} />    
-                    <TextField label="Race" className={classes.textField} />     
-                    <TextField label="Gender" className={classes.textFieldSmall} />     
-                    <TextField label="Age" className={classes.textFieldSmall } style={{marginLeft: 10}} />   
-                    <TextField label="Birth Sign" className={classes.textField} />    
-                    <TextField label="Class" className={classes.textField} />    
-                    <TextField label="Relationship Status" className={classes.textField} />    
-                    <TextField label="Spouse" className={classes.textField} />   
-                    <TextField label="Weapons and Tools" multiline rows="5" className={classes.textField} />
-                    <TextField label="Armor and Accessories" multiline rows="5" className={classes.textField} />
-                    <TextField label="Powers and Abilities" multiline rows="5" className={classes.textField} />
+                    <TextField label="Name" onChange={(e) => onInputChange(e, "name")} className={classes.textField} />    
+                    <TextField label="Race" onChange={(e) => onInputChange(e, "race")} className={classes.textField} />     
+                    <TextField label="Gender" onChange={(e) => onInputChange(e, "gender")} className={classes.textFieldSmall} />     
+                    <TextField label="Age" onChange={(e) => onInputChange(e, "age")} className={classes.textFieldSmall } style={{marginLeft: 10}} />   
+                    <TextField label="Birth Sign" onChange={(e) => onInputChange(e, "birth")} className={classes.textField} />    
+                    <TextField label="Class" onChange={(e) => onInputChange(e, "class")} className={classes.textField} />    
+                    <TextField label="Relationship Status" onChange={(e) => onInputChange(e, "relationship")} className={classes.textField} />    
+                    <TextField label="Spouse" onChange={(e) => onInputChange(e, "spouse")} className={classes.textField} />   
+                    <TextField label="Weapons and Tools" onChange={(e) => onInputChange(e, "weapons")} multiline rows="5" className={classes.textField} />
+                    <TextField label="Armor and Accessories" onChange={(e) => onInputChange(e, "armor")} multiline rows="5" className={classes.textField} />
+                    <TextField label="Powers and Abilities" onChange={(e) => onInputChange(e, "power")} multiline rows="5" className={classes.textField} />
                 </Grid>
                 <Grid className={classes.grid} item xs={12} md={3}>                 
-                    <TextField label="Main Skills" multiline rows="5" className={classes.textField} />   
-                    <TextField label="Personality" multiline rows="10" className={classes.textField} />
-                    <TextField label="Biography" multiline rows="15" className={classes.textField} />                    
+                    <TextField label="Main Skills" multiline rows="5" onChange={(e) => onInputChange(e, "mainSkills")} className={classes.textField} />   
+                    <TextField label="Personality" multiline rows="10" onChange={(e) => onInputChange(e, "personality")} className={classes.textField} />
+                    <TextField label="Biography" multiline rows="15" onChange={(e) => onInputChange(e, "bio")} className={classes.textField} />                    
                 </Grid>
                 <Grid className={classes.grid} item xs={12} md={3}>
                     <div style={{width: '100%', height: 350, background: "lightgray"}}>photo</div>
-                    <TextField label="Likes" multiline rows="7" className={classes.textField} />
-                    <TextField label="Dislikes" multiline rows="7" className={classes.textField} />
+                    <TextField label="Likes" multiline rows="7" onChange={(e) => onInputChange(e, "likes")} className={classes.textField} />
+                    <TextField label="Dislikes" multiline rows="7" onChange={(e) => onInputChange(e, "dislikes")} className={classes.textField} />
                 </Grid>
                 <Grid style={{textAlign: "center"}} item xs={12}>
                     <Link to="/dashboard" style={{textDecoration: 'none'}}>

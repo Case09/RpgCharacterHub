@@ -7,14 +7,7 @@ import { create } from '../helpers/sheets';
 //         sheetGuid: {
 //             creator: 'user1',
 //             isPrivate: false,
-//             data: sheetData1
-//         }
-//     },
-//     sheetData: {
-//         sheedData1: {
-//             name: 'test',
-//             gender: 'female',
-//             class: 'Thief'
+//             data: {...data}
 //         }
 //     },
 //     favorites: {
@@ -26,9 +19,9 @@ import { create } from '../helpers/sheets';
 //     }
 // }
 
-export function createSheet(data) {
+export function createSheet(creator, data) {
     return dispatch => {
-        create(data)
+        create(creator, data)
             .then(resp => createSheetSuccess(resp))
             .catch(error => createSheetFailed())
     }

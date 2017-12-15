@@ -12,17 +12,25 @@ class NewSheet extends Component {
         const { auth, createSheet } = this.props;
         const email = auth.user.email;
         const data = {
-            name: "nesto1",
-            email
+            ...this.state
         };
         
-        return createSheet(data);
+        return createSheet(email, data);
+    }
+
+    onInputChange(e, label) {
+        const value = e.target.value;
+        this.setState({
+            [label]: value
+        });
     }
 
     render() {
         const { createSheet, auth } = this.props;
         return (
-            <SheetForm create={(data) => this.createNewSheet()}/>
+            <SheetForm 
+                onInputChange={(e, label) => this.onInputChange(e, label)}
+                create={(data) => this.createNewSheet()}/>
         )
     }
 }
@@ -35,7 +43,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        createSheet: (data) => dispatch(createSheet(data))
+        createSheet: (email, data) => dispatch(createSheet(email, data))
     }
 }
 
