@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
@@ -18,6 +19,10 @@ const SheetsFormTitle = ({classes}) => {
             <Typography className={classes.title} type="headline" color="accent">Create New Character Sheet</Typography>
         </Grid>
     )
+}
+
+SheetsFormTitle.propTypes = {
+    classes: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(SheetsFormTitle);

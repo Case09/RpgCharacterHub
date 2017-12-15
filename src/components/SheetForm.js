@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import SheetFormTitle from '../components/SheetsFormTitle';
 
@@ -83,6 +84,14 @@ const SheetForm = ({classes, create, onInputChange, isPublic, makePublic}) => {
             </Grid>
         </div>
     )
+}
+
+SheetForm.propTypes = {
+    classes: PropTypes.object.isRequired,
+    create: PropTypes.func,
+    onInputChange: PropTypes.func,
+    isPublic: PropTypes.bool,
+    makePublic: PropTypes.func
 }
 
 export default withStyles(styles)(SheetForm);
