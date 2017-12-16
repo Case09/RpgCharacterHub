@@ -17,11 +17,12 @@ export function resetPassword(email) {
 	return firebaseAuth().sendPasswordResetEmail(email);
 }
 
-export function saveUser(user) {
-	return database.ref(`users/${user.uid}`)
+export function saveUser() {
+	const currentUser = firebaseAuth().currentUser;
+	return database.ref(`users/${currentUser.uid}`)
 		.set({
-			displayName: user.displayName,
-			email: user.email,
-			uid: user.uid
+			displayName: currentUser.displayName,
+			email: currentUser.email,
+			uid: currentUser.uid
 		})
 }

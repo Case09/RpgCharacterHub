@@ -4,11 +4,11 @@ export function sheetsReducer(state = {}, action) {
     switch(action.type) {
         case ActionTypes.createSheetSuccess:
             return Object.assign({}, state, {
-                sheet: action.sheet
+                error: ""
             });
         case ActionTypes.createSheetFailed:
             return Object.assign({}, state, {
-                sheet: "no sheet"
+                error: action.error
             });
         default:
 			return state;

@@ -35,16 +35,16 @@ export function signOut() {
 export function signUp(username, password, displayName) {
     return dispatch => {
         createUser(username, password)
-            // If success
             .then(user => {
                 // Enter User Name or displayName
                 return user.updateProfile({displayName})
-                    // if success
-                    .then(() => {
-                        // Save user info to /users collection
-                        return saveUser(user)
-                            .then(dispatch(registerSuccessAction(user)))
-                    })
+            })
+            .then(() => {
+                // Save user info to /users collection
+                return saveUser()
+            })
+            .then(() => {
+                dispatch(registerSuccessAction())
             })
             .catch(error => {
                 return dispatch(registerFailedAction(error.message))
@@ -80,9 +80,10 @@ function loginFailedAction(errorMessage) {
 }
 
 function registerSuccessAction(user) {
+    const currentUser = firebaseAuth().currentUser;
     return {
         type: ActionTypes.registerSuccess,
-        user
+        user: currentUser
     }
 }
 

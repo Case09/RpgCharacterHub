@@ -15,7 +15,7 @@ const NavBar = ({auth, signOut}) => {
 				<Typography type="title" color="inherit">
 					{
 						auth.isAuthenticated !== undefined ? 
-							auth.user ? `Welcome, ${auth.user.displayName}` : null
+							auth.user ? `Welcome, ${auth.user.displayName || ""}` : null
 						: null
 					}
 				</Typography>

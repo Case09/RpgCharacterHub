@@ -1,24 +1,36 @@
 import ActionTypes from '../constants/action_types';
 import { database, firebaseAuth } from '../config/database';
-import { create } from '../helpers/sheets';
+import { create, saveSheetData, savePublicSheet } from '../helpers/sheets';
 
 export function createSheet(data) {
+    // Taking the ref of /sheetsData collection, so it can be passed to promise chain
+    const sheetsDataRef = database.ref(`/sheetsData`).push();
     return dispatch => {
-        create(data)
-            .then(resp => createSheetSuccess(resp))
-            .catch(error => createSheetFailed())
+        create(data, sheetsDataRef)
+            .then(() => {
+                return saveSheetData(data, sheetsDataRef);
+            })
+            .then(() => {
+                return savePublicSheet(data, sheetsDataRef);
+            })
+            .then(() => {
+                return dispatch(createSheetSuccess());
+            })
+            .catch((error) => {
+                return dispatch(createSheetFailed(error));
+            })
     }
 }
 
-function createSheetSuccess(sheet) {
+function createSheetSuccess() {
     return {
-        type: ActionTypes.createSheetSuccess,
-        sheet
+        type: ActionTypes.createSheetSuccess
     }
 }
 
-function createSheetFailed() {
+function createSheetFailed(error) {
     return {
-        type: ActionTypes.createSheetFailed
+        type: ActionTypes.createSheetFailed,
+        error
     }
 }
