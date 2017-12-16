@@ -10,6 +10,14 @@ export function sheetsReducer(state = {}, action) {
             return Object.assign({}, state, {
                 error: action.error
             });
+        case ActionTypes.getLatestSheetsSuccess:
+            return Object.assign({}, state, {
+                latestSheets: ActionTypes.sheets
+            })
+        case ActionTypes.getLatestSheetsFailed:
+            return Object.assign({}, state, {
+                error: ActionTypes.error
+            })
         default:
 			return state;
     }

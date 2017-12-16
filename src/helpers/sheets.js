@@ -12,19 +12,36 @@ export function create(data, sheetsDataRef) {
 }
 
 export function saveSheetData(data, sheetsDataRef) {
-  	// Writing sheet data into /sheetsData
-    return sheetsDataRef.set({
-      ...data.sheetData
-    });
+	// Writing sheet data into /sheetsData
+	return sheetsDataRef.set({
+		...data.sheetData
+	});
 }
 
 export function savePublicSheet(data, sheetsDataRef) {
-  const publicSheetsRef = database.ref(`/publicSheets`).push();
-  // If public, writing to /publicSheets collection
-  if (data.isPublic) {
-    return publicSheetsRef.set({
-      creator: data.uid,
-      sheetData: sheetsDataRef.key
-    });
-  }
+	const publicSheetsRef = database.ref(`/publicSheets`).push();
+	// If public, writing to /publicSheets collection
+	if (data.isPublic) {
+		return publicSheetsRef.set({
+			creator: data.uid,
+			sheetData: sheetsDataRef.key
+		});
+	}
+}
+
+export function getLatest() {
+  const currentUser = firebaseAuth().currentUser;
+  const sheetsRef = database.ref(`/sheets/${currentUser.uid}`);
+  return sheetsRef.once('value');
+}
+
+export function getLatestSheetData(sheets) {
+  let sheetData = [];
+  sheets.forEach(sheet => {
+    sheetData.push(sheet.child("sheetData").val());
+  });
+  const sheetsDataRef = database.ref(`/sheetsData`);
+  sheetData.forEach(sheetId => {
+    return sheetsDataRef.child(sheetId)
+  })
 }

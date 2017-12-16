@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getLatestSheets } from '../actions/sheets';
 
 class LatestSheets extends Component {
 
@@ -7,9 +8,25 @@ class LatestSheets extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        return this.props.getLatestSheets();
+    }
+
     render() {
         return <div>Latest sheets</div>
     }
 }
 
-export default connect()(LatestSheets);
+function mapStateToProps(state) {
+    return {
+        sheets: state.sheets
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getLatestSheets: () => dispatch(getLatestSheets())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LatestSheets);

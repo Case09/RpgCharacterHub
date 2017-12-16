@@ -36,7 +36,7 @@ export function signUp(username, password, displayName) {
     return dispatch => {
         createUser(username, password)
             .then(user => {
-                // Enter User Name or displayName
+                // Save User Name or displayName
                 return user.updateProfile({displayName})
             })
             .then(() => {
