@@ -7,6 +7,7 @@ import Grid from 'material-ui/Grid';
 
 import Greetings from './Greetings';
 import Navigation from './Navigation';
+import LatestSheets from '../containers/LatestSheets';
 
 const style = theme => ({
     root: {
@@ -38,7 +39,7 @@ const DashboardLayout = ({classes}) => {
                 <Typography className={classes.latest} type="headline" color="accent">Latest public character sheets:</Typography>
             </Grid>
             <Grid className={classes.myLatest} item xs={6}>
-                Latest Sheets
+                <LatestSheets />
             </Grid>
             <Grid className={classes.myLatest} item xs={5}>
                 Latest Public Sheets

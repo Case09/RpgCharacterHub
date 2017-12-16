@@ -5,7 +5,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./containers/Home";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/DashboardLayout";
 import Sheets from "./containers/Sheets";
 
 // /sheets list of my sheets

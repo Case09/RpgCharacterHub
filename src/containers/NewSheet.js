@@ -14,17 +14,17 @@ class NewSheet extends Component {
     // Structuring data for sending, calling createSheet action creator
     createNewSheet() {
         const { auth, createSheet } = this.props;
-        const uid = auth.user.uid;
         const isPublic = this.state.public;
+        const uid = auth.user.uid;
 
-        const data = {
+        const sheetData = {
             ...this.state
         };
         // Making sheet object
         const sendData = {
             uid,
             isPublic,
-            data
+            sheetData
         }
         
         return createSheet(sendData);
