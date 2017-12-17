@@ -40,8 +40,10 @@ export function getLatestSheetData(sheets) {
   sheets.forEach(sheet => {
     sheetData.push(sheet.child("sheetData").val());
   });
-  const sheetsDataRef = database.ref(`/sheetsData`);
+	const sheetsDataRef = database.ref(`/sheetsData`);
+	let sheetsArray;
   sheetData.forEach(sheetId => {
-    return sheetsDataRef.child(sheetId)
-  })
+    sheetsArray.push(sheetsDataRef.child(sheetId))
+	})
+	return sheetsArray;
 }
