@@ -29,20 +29,29 @@ export function savePublicSheet(data, sheetsDataRef) {
 	}
 }
 
-export function getLatest() {
+export function getLatestSheetsRef() {
+  // Returning /sheets collection ref
   const currentUser = firebaseAuth().currentUser;
   const sheetsRef = database.ref(`/sheets/${currentUser.uid}`);
   return sheetsRef.once('value');
 }
 
-export function getLatestSheetData(sheets) {
+export function getLatestSheetIds(sheetsRef) {
+  // Returning array of ids used to get sheetData
   let sheetData = [];
-  sheets.forEach(sheet => {
+  sheetsRef.forEach(sheet => {
     sheetData.push(sheet.child("sheetData").val());
   });
-	const sheetsDataRef = database.ref(`/sheetsData`);
-	let sheetsArray;
-  sheetData.forEach(sheetId => {
+  return sheetData;
+}
+
+export function getLatestSheetDataRef() {
+  return database.ref(`/sheetsData`).once('value');
+}
+
+export function getLatestSheetData(ids) {
+	let sheetsArray = [];
+  ids.forEach(sheetId => {
     sheetsArray.push(sheetsDataRef.child(sheetId))
 	})
 	return sheetsArray;

@@ -1,6 +1,13 @@
 import ActionTypes from '../constants/action_types';
 import { database, firebaseAuth } from '../config/database';
-import { create, saveSheetData, savePublicSheet, getLatest, getLatestSheetData } from '../helpers/sheets';
+import { 
+    create, 
+    saveSheetData, 
+    savePublicSheet, 
+    getLatestSheetsRef, 
+    getLatestSheetIds, 
+    getLatestSheetData
+} from '../helpers/sheets';
 
 export function createSheet(data) {
     // Taking the ref of /sheetsData collection, so it can be passed to promise chain
@@ -24,9 +31,12 @@ export function createSheet(data) {
 
 export function getLatestSheets() {
     return dispatch => {
-        getLatest()
-            .then((sheets) => {
-                return getLatestSheetData(sheets);
+        getLatestSheetsRef()
+            .then((sheetsRef) => {
+                return getLatestSheetIds(sheetsRef);
+            })
+            .then((ids) => {
+                return dispatch(getLatestSheetData(ids, databaseRef))
             })
             .then((sheets) => {
                 return dispatch(getLatestSheetsSuccess(sheets))
@@ -51,9 +61,10 @@ function createSheetFailed(error) {
     }
 }
 
-function getLatestSheetsSuccess() {
+function getLatestSheetsSuccess(sheets) {
     return {
-        type: ActionTypes.getLatestSheetsSuccess
+        type: ActionTypes.getLatestSheetsSuccess,
+        sheets
     }
 }
 
